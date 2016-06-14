@@ -1,0 +1,140 @@
+{% extends "Layout/main_header.html" %}
+{% block body %}
+    <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+    <script type="text/JavaScript">
+        function changeValueByCount(count, price, point) {
+            var m_count = count.value;
+            var m_price = parseInt(price.replace(',',''));
+            var m_point = parseInt(point.replace(',',''));
+
+            m_price *= m_count;
+            m_point *= m_count;
+
+            document.getElementById("price").value = m_price;
+            document.getElementById("point").value = m_point;
+        }
+    </script>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            {% if owned_point %}
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                    소유 포인트
+                </div>
+                <div class="panel-body">
+                    {{ owned_point }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-md-8"></div>
+    </div>
+    <div class="row">
+        <form action="{{ url_for('payment_approve') }}" name="approve_form" id="approve_form" method="post" class="form-horizontal" style="display: block;">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>'{{ session['user_name'] }}'님의 주문 확인서입니다.</strong></div>
+                    <form>
+                        <table class="table">
+                            <tr>
+                                <td class="col-md-3">표지</td>
+                                <td class="col-md-3">도서명</td>
+                                <td class="col-md-2">수량</td>
+                                <td class="col-md-2">가격</td>
+                                <td class="col-md-2">포인트</td>
+                            </tr>
+                            {% if payment_list %}
+                                {% for list in payment_list %}
+                                    <input type="hidden" name="payment_list" value="{{ list[4] }}">
+                                    <tr>
+                                        <td><img src="../../static/image/Book/{{ list[0] }}" width="70" height="90"></td>
+                                        <td>{{ list[1] }}</td>
+                                        <td>
+                                            <select class="form-control" title="" onchange="changeValueByCount(this, '{{ list[2] }}', '{{ list[3] }}')">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" id="price" value="{{ list[2] }}" readonly title=""></td>
+                                        <td><input type="text" id="point" value="{{ list[3] }}" readonly title=""></td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </table>
+                    </form>
+            </div>
+            <div class="footer">
+                <button type="button" class="btn btn-danger center-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">결제하기</button>
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">주문 확인서</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        {% if total_price %}
+                                            <input type="hidden" name="total_price" value="{{ total_price }}">
+                                            <label for="recipient-name" class="control-label">총 주문 금액:
+                                            <strong>{{ total_price }}</strong>
+                                            </label>
+                                        {% endif %}
+                                    </div>
+                                    <div class="row">
+                                        {% if total_point %}
+                                            <input type="hidden" name="total_point" value="{{ total_point }}">
+                                            <label for="recipient-name" class="control-label">총 적립 포인트:
+                                            <strong>{{ total_point }}</strong>
+                                            </label>
+                                        {% endif %}
+                                    </div>
+                                    <div class="row">
+                                        {% if owned_point %}
+                                            <label for="message-text" class="control-label">'{{ session['user_name'] }}'님 보유 포인트:
+                                            <strong>{{ owned_point }}</strong>
+                                            </label>
+                                        {% endif %}
+                                    </div>
+                                    <label for="message-text" class="control-label">포인트 사용 여부 :</label>
+                                    <input type="checkbox" name="check_box" value="True">
+                                </div>
+                                <div class="col-md-5"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                            <input type="submit" class="btn btn-danger" value="결제">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        </form>
+    </div>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="../../static/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        function payButtonClicked() {
+            document.approve_form.submit()
+        }
+
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var recipient = button.data('whatever');
+            var modal = $(this);
+        })
+    </script>
+{% endblock %}

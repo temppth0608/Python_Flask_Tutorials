@@ -1,0 +1,31 @@
+{% extends "Layout/main_header.html" %}
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="writeForm">
+                <div class="header_name">
+                    <h2>게시물 등록</h2>
+                </div>
+                <form action="{{ url_for('approval_write') }}" name="form" id="list_form" method="post" enctype=multipart/form-data class="form-horizontal" style="display: block;" >
+                    <div class="form-group">
+                        <label>글쓴이</label>
+                        <input type="text" class="form-control" value="{{ session['user_id'] }}" title="aa" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>글내용</label>
+                        <textarea class="form-control" rows="10" name="contents" title=""></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-danger center-block">제출</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="../../static/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+    </script>
+{% endblock %}

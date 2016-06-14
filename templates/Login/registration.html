@@ -1,0 +1,194 @@
+{% extends "Layout/header.html" %}
+{% block body %}
+    {% if login_error %}
+        <script>
+            alert("{{ login_error }}");
+        </script>
+    {% endif %}
+    {% if sign_in_result %}
+        <script>
+            alert("{{ sign_in_result }}");
+        </script>
+    {% endif %}
+
+    <div id="mainWrap">
+        <div id="loggit">
+            <h1>
+                <i class="fa fa-lock"> </i> <img src="../../static/image/Component/lock_icon.png" width="30" height="35">&nbsp Login
+            </h1>
+            <h3>
+                "Please " <strong>Login</strong> " or " <strong>Register</strong>
+            </h3>
+
+            <!-- 로그인폼 -->
+            <form action="{{ url_for('login') }}" name="form1" id="logForm" method="post" class="form-horizontal" style="display: block;">
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class=input-group>
+                            <span class="input-group-addon"> <img src="../../static/image/Component/user.png" width="15" height="15">
+                            </span>
+                            <input
+                                    {% if session['user_id'] %}
+                                    value="{{ session['user_id'] }}"
+                                    {% endif %}
+                                    type="text" name="memberId" class="form-control input-lg" placeholder="ID" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class=input-group>
+                            <span class="input-group-addon"> <img src="../../static/image/Component/key.png" width="15" height="15">
+                            </span> <input type="password" name="memberPass" class="form-control input-lg" placeholder="Password" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group formSubmit">
+                    <div class="register_login">
+                        <div class="login">
+                            <div class="col-xs-4"></div>
+                            <div class="col-xs-4">
+                                <input onclick="fieldCheck1()" type="button" class="btn btn-primary btn-lg" value="&nbsp Login &nbsp">
+                            </div>
+                            <div class="col-xs-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group formNotice">
+                    <div class="col-xs-12">
+                        <p class="text-center">
+                            "Don't have an account? " <span>Register now</span>
+                    </div>
+                </div>
+            </form>
+            <!-- 회원가입폼 -->
+            <form action="{{ url_for('sign_in') }}" name="form2" id="regForm" method="post" class="form-horizontal" style="display: none;">
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class=input-group>
+                            <span class="input-group-addon"> <img src="../../static/image/Component/user.png" width="15" height="15">
+                            </span> <input type="text" name="memberId" class="form-control input-lg" placeholder="ID" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class=input-group>
+                            <span class="input-group-addon"> <img src="../../static/image/Component/key.png" width="15" height="15">
+                            </span> <input type="password" name="memberPass" class="form-control input-lg" placeholder="Password" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class=input-group>
+                            <span class="input-group-addon"> <img src="../../static/image/Component/key.png" width="15" height="15">
+                            </span> <input type="password" name="memberPass2" class="form-control input-lg" placeholder="Password Check" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class=input-group>
+                            <span class="input-group-addon"> <img src="../../static/image/Component/name.png" width="15" height="15">
+                            </span> <input type="text" name="memberName" class="form-control input-lg" placeholder="Dev.Park" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class=input-group>
+                            <span class="input-group-addon"> <img src="../../static/image/Component/phone.png" width="15" height="15">
+                            </span> <input type="text" name="memberNumber" class="form-control input-lg" placeholder="010.1234.5678" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class=input-group>
+                            <span class="input-group-addon"> <img src="../../static/image/Component/address.png" width="15" height="15">
+                            </span> <input type="text" name="memberAddress" class="form-control input-lg" placeholder="Seoul, Korea" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group formSubmit">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <a href="{{ url_for('root') }}" class="btn btn-primary btn-lg">Cancel</a>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3 sumitWrap">
+                        <input onclick="fieldCheck2()" type="button" class="btn btn-primary btn-lg" value="Register">
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="form-group formNotice">
+                        <div class="col-xs-12">
+                            <p class="hasAccount text-center">
+                                "Already have an account? " <span>Log in here</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="../../static/bootstrap/js/bootstrap.js"></script>
+
+    <script type="text/javascript">
+        function fieldCheck1() {
+            if (document.form1.memberId.value == "") {
+                alert("아이디를 입력하세요");
+                document.form1.memberId.focus();
+                return;
+            } else if (document.form1.memberPass.value == "") {
+                alert("비밀번호를 입력하세요");
+                document.form1.memberPass.focus();
+                return;
+            }
+            document.form1.submit();
+        }
+
+        function fieldCheck2() {
+            var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+            if (document.form2.memberId.value == "") {
+                alert("아이디를 입력하세요");
+                document.form2.memberId.focus();
+                return;
+            } else if (document.form2.memberPass.value == "") {
+                alert("비밀번호를 입력하세요");
+                document.form2.memberPass.focus();
+                return;
+
+            } else if (document.form2.memberName.value == "") {
+                alert("이름을 입력하세요");
+                document.form2.memberName.focus();
+                return;
+            }
+
+            if(document.form2.memberId.value.length<4 || document.form2.memberId.value.length>12) {
+                alert("아이디를 4-12로 해주세요");
+                document.form2.memberId.focus();
+                return;
+            }
+
+            if (document.form2.memberPass.value != document.form2.memberPass2.value) {
+                alert("비밀번호가 일치하지 않습니다.");
+                document.form2.memberPass2.focus();
+                return;
+            }
+            document.form2.submit();
+        }
+
+        $(document).ready(function() {
+            $(".formNotice span").click(function() {
+                $("#logForm").toggle();
+                $("#regForm").toggle();
+            });
+        });
+    </script>
+{% endblock %}
+

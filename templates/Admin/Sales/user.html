@@ -1,0 +1,31 @@
+{% extends "Layout/admin_header.html" %}
+{% block body %}
+    <br><br><br><br>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>'{{ session['user_name'] }}'님의 구매 내역입니다.</strong></div>
+                    <table class="table table-hover">
+                        <tr>
+                            <th>고객</th>
+                            <th>판매량</th>
+                        </tr>
+                        {% if book_list %}
+                            {% for list in book_list %}
+                            <tr>
+                                <td>{{ list[0] }}</td>
+                                <td>{{ list[1] }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </table>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="../../../static/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+{% endblock %}

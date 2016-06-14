@@ -1,0 +1,81 @@
+{% extends "Layout/main_header.html" %}
+{% block body %}
+    <div class="row">
+        <form action="{{ url_for('main_sort') }}" id="sort_form" method="post" class="form-horizontal">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                    <h5>정렬 순서</h5>
+                    <select class="form-control" name="sort" form="sort_form" onchange="this.form.submit()">
+                        {%  if sort_type %}
+                            <option selected disabled>{{ sort_type }}</option>
+                        {%  endif %}
+                        <option value="Date">Date</option>
+                        <option value="Publisher">Publisher</option>
+                        <option value="Price">Price</option>
+                        <option value="Title">Title</option>
+                    </select>
+                </div>
+            <div class="col-md-9"></div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <form action="{{ url_for('payment') }}" name="form" id="list_form" method="post" class="form-horizontal" style="display: block;">
+                <div class="contents">
+                    <div class="row">
+                        {% if book_list %}
+                            {% for book in book_list %}
+                                <div class="col-md-3">
+                                    <div class="post-pannel post_pannel">
+                                        <a target="_blank"></a>
+                                        <div class="post-title">
+                                            <h4>{{ book.name }}</h4>
+                                        </div>
+                                        <div class="post-img" style="background-color: rgb(230, 189, 205);">
+                                            <img class="bookimage" alt="bookimage" src="../../static/image/Book/{{ book.image }}">
+                                        </div>
+                                        <div class="post-description">
+                                            <strong>출판사</strong>
+                                            <br>
+                                            {{ book.publisher }}
+                                        </div>
+                                        <div class="post-description">
+                                            <strong>출판일</strong>
+                                            <br>
+                                            {{ book.date }}
+                                        </div>
+                                        <div class="post-description">
+                                            <strong>가격</strong>
+                                            <br>
+                                            {{ book.price }}
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="checkbox" value={{ book.id }}> 구매하시려면 체크해주세요 :)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                <input onclick="paymentCheck()" type="button" class="btn btn-danger center-block" value="결제">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="../../static/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        function paymentCheck() {
+            {%  if count %}
+            console.log({{ count }});
+            document.form.submit();
+            {% endif %}
+        }
+    </script>
+{% endblock %}
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>title</title>
+
+    <!--Import Bootstrap -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <link href="../../static/custom/admin_style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header" id="header">
+		<div class="container">
+			<a href="{{ url_for('admin_main') }}">
+			<div class="header-logo">
+                <h3>
+                    <img src="../../static/image/Component/python.png" height="30", width="30" alt="" />파이썬 Book Store Admin Site
+                </h3>
+			</div>
+			</a>
+			<div class="top-nav">
+				<span class="menu"></span>
+				<ul class="nav1">
+					<li><a href="{{ url_for('admin_date') }}">날짜별 도서별 판매량</a></li>
+					<li><a href="{{ url_for('admin_user') }}">고객별 판매량</a></li>
+					<li><a href="{{ url_for('admin_book') }}">도서별 판매량</a></li>
+					<li><a href="{{ url_for('admin_manage') }}">서적 관리</a></li>
+				</ul>
+				<!-- script-for-menu -->
+				<script>
+					$("span.menu").click(function() {
+						$("ul.nav1").slideToggle(300, function() {
+							// Animation complete.
+						});
+					});
+				</script>
+			</div>
+        </div>
+	</div>
+{% block body %}
+{% endblock %}
+</body>
+</html>

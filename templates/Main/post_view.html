@@ -1,0 +1,42 @@
+{% extends "Layout/main_header.html" %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <a href="post_write" class="btn btn-danger">글쓰러가기</a>
+        </div>
+        <div class="col-md-8"></div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>'{{ session['user_name'] }}'님의 구매 내역입니다.</strong></div>
+                    <table class="table table-hover">
+                        <tr>
+                            <th class="col-md-2">게시물 번호</th>
+                            <th class="col-md-2">유저 이름</th>
+                            <th class="col-md-6">내용</th>
+                            <th class="col-md-2">개시 날짜</th>
+                        </tr>
+                        {% if post_list %}
+                            {% for list in post_list %}
+                            <tr>
+                                <td>{{ list.id }}</td>
+                                <td>{{ list.user_id }}</td>
+                                <td>{{ list.contents }}</td>
+                                <td>{{ list.date }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </table>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+<script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="../../static/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+    </script>
+{% endblock %}

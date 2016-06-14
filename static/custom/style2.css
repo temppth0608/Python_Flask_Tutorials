@@ -1,0 +1,334 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+	font-family: 'Open Sans', sans-serif;
+	background: #f7f7f7;
+}
+
+.table>tbody>tr>td {
+    vertical-align: middle;
+}
+
+.my_room {
+    display: inline;
+    margin-top: 50px;
+    position: relative;
+}
+
+input {
+    outline:none;
+    border-width:0px;
+    border:none;
+}
+
+.post-pannel {
+	position: relative;
+	display: inline-block;
+	clear: initial;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	margin-top: 30px;
+	background-color: white;
+	padding-left: 0px;
+	padding-right: 0px;
+	/*box-shadow: 0px 2px 4px 0px #ddd;*/
+	/*border-radius: 3px;*/
+	width: 100%;
+	font-size: 13px;
+}
+
+.post-title {
+	width: 100%;
+}
+
+.post-img {
+	width: 100%;
+	height: 190px;
+    display: block;
+	position: relative;
+	overflow: hidden;
+    vertical-align: middle;
+    text-align:center
+}
+
+.post-img img {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 100%;
+}
+
+.post-description {
+	width: 100%;
+	height: 50px;
+	color: #000000;
+	border: lightslategray;
+}
+
+div.post-summary>p,div.post-title>p,div.post-description>p {
+	padding-top: 10px;
+	margin-left: 10px;
+	line-height: 1.3em;
+	word-wrap: break-word;
+}
+
+.header_name {
+	font-family: "Open Sans", sans-serif;
+	color: #005666;
+}
+
+.formStruct {
+	font-family: "Open Sans", sans-serif;
+	background: url(../image/light_gray.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 659px;
+	position: relative;
+	margin-top: 1cm;
+	margin-bottom: 2cm;
+}
+
+.view_Form {
+	font-family: "Open Sans", sans-serif;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 659px;
+	position: relative;
+	background: url(../image/main_image.png);
+}
+
+.view_container {
+	background-color: white;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 659px;
+	position: relative;
+	margin-top: 1cm;
+	margin-bottom: 2cm;
+	font-family: "Open Sans", sans-serif;
+}
+
+hr {
+	margin-top: 3px;
+	margin-bottom: 3px;
+	border: 0;
+	border-top: 1px solid #eee;
+}
+
+.inform_text {
+	color: red;
+}
+
+.text_area {
+	position: relative;
+	display: inline-block;
+	clear: initial;
+	min-height: 420px;
+	margin-left: 7cm;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	margin-top: 30px;
+	background-color: white;
+	padding-left: 0px;
+	padding-right: 0px;
+	border: solid;
+	border-color: blue;
+	border-radius: 1px;
+	width: 60%;
+	border-width: thin;
+	font-size: 13px;
+}
+
+.contents {
+	width: 100%;
+	height: 230px;
+}
+
+.writeComment {
+	bottom: 0px;
+	left: 0px;
+	background-color: #d3d3d3;
+	right: 0px;
+	margin-bottom: 0px;
+	width: 100%;
+	height: 40px;
+}
+
+.comment_form {
+	width: 100%;
+	height: 150px;
+	background-color: #d3d3d3;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	overflow: scroll;
+}
+
+.roadInfo {
+	color: #000000;
+}
+
+.roadDescription {
+	color: #000000;
+}
+
+.roadImage {
+	color: #000000;
+}
+
+.carousel-control.left,.carousel-control.right {
+	background-image: none
+}
+
+.des {
+	margin-left: 3.1cm;
+}
+
+.inform {
+	margin-left: 10cm;
+	margin-top: 1.7cm;
+}
+
+.carousel-indicators {
+	bottom: 0px;
+	margin-top: 8cm;
+	bottom: 10px;
+	left: 50%;
+	z-index: 15;
+	width: 60%;
+	padding-left: 0;
+	margin-left: -30%;
+	text-align: center;
+	list-style: none;
+}
+
+.rec_select {
+	color: #000;
+	margin-top: 2.5cm;
+	background: url(../image/74.png);
+	opacity: 0.95;
+	filter: alpha(opacity = 90);
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 10px;
+
+}
+
+.rec_show {
+	color: white;
+	margin-top: 2.5cm;
+	opacity: 0.95;
+	filter: alpha(opacity = 95);
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 10px;
+	width: 800px;
+	height: 390px;
+	overflow-x: scroll;
+}
+
+.search_btn {
+	margin-top: 0.7cm;
+}
+
+.rating {
+	overflow: hidden;
+	display: inline-block;
+	font-size: 0;
+	position: relative;
+}
+
+.rating-input {
+	float: right;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin: 0 0 0 -16px;
+	opacity: 0;
+}
+
+.rating:hover .rating-star:hover,.rating:hover .rating-star:hover ~ .rating-star,.rating-input:checked ~ .rating-star {
+	background-position: 0 0;
+}
+
+.rating-star,.rating:hover .rating-star {
+	position: relative;
+	float: right;
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -16px;
+}
+
+.rec_content {
+	margin-top: 0.3cm;
+	min-height: 300px;
+ 	  background: rgb(51, 122, 183);
+
+}
+
+.rec_go {
+	margin-top: 4cm;
+}
+
+.chosen-single {
+    border-color: rgba(82, 168, 236, .8);
+    outline: 0;
+    outline: thin dotted \9;
+    -moz-box-shadow: 0 0 8px rgba(82, 168, 236, .6);
+    box-shadow: 0 0 8px rgba(82, 168, 236, .6)
+}
+.chosen-container-single .chosen-single span {
+    padding-top: 2px;
+}
+.chosen-container-single .chosen-single div b {
+    margin-top: 2px;
+}
+
+.bigRoadBtn {
+	margin-left : 9.4cm;
+	margin-top : 0.3cm;
+}
+
+.input-group-addon {
+	border: 0 none;
+}
+
+/* #rotator {
+  background: url(images/rotator.php) no-repeat center top;
+  width: 700px;
+  height: 150px;
+} */
+
+/**********************************************************************/
+/****************** MEDIA QUERIES ************************************/
+/********************************************************************/
+@media ( max-width :979px) {
+}
+
+@media ( max-width : 768px) {
+	body {
+		padding-bottom: 0;
+	}
+	#loggit {
+		margin-top: 0;
+		width: 100%;
+	}
+	#loggit .submitWrap {
+		margin-top: 15px;
+		text-align: center;
+	}
+}
+
+@media ( max-width : 500px) {
+	#loggit {
+		width: 100%;
+	}
+}

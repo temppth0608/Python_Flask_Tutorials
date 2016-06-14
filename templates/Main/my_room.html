@@ -1,0 +1,51 @@
+{% extends "Layout/main_header.html" %}
+{% block body %}
+    {% if messege %}
+        <script>
+            alert("{{ messege }}");
+        </script>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            {% if owned_point %}
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                    소유 포인트
+                </div>
+                <div class="panel-body">
+                    {{ owned_point }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-md-8"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>'{{ session['user_name'] }}'님의 구매 내역입니다.</strong></div>
+                    <table class="table table-hover">
+                        <tr>
+                            <th>유저 이름</th>
+                            <th>도서 이름</th>
+                            <th>구입 날짜</th>
+                            <th>가격</th>
+                        </tr>
+                        {% if my_room_list %}
+                            {% for list in my_room_list %}
+                            <tr>
+                                <td>{{ session['user_name'] }}</td>
+                                <td>{{ list[0] }}</td>
+                                <td>{{ list[1] }}</td>
+                                <td>{{ list[2] }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </table>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>title</title>
+
+    <!--Import Bootstrap -->
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <link href="../../static/custom/style2.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="col-md-1">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ url_for('main') }}">
+                        <img alt="Brand" src="../../static/image/Component/python.png" height="30", width="30">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h2 class="navbar-text">Python Book Store</h2>
+            </div>
+            <div class="col-md-5">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('main') }}">메인<span class="sr-only">(current)</span></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('post_view') }}">게시판<span class="sr-only">(current)</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="navbar-text">
+                    <button type="button" class="btn btn-default">
+                        <a href="{{ url_for('my_room') }}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> My Room
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>
